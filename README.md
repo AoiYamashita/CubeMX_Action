@@ -8,4 +8,5 @@ It generates a C++-compatible Makefile and `main.cpp`.
    - **Before Code Generation**
    - **After Code Generation**
 > **Note:** Do not add a file extension when registering the Action in CubeMX.
+> 
 > **Note:** Run `make clean` before switching from C to C++.
