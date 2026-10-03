@@ -78,6 +78,9 @@ def main():
                     os.rename(file_name,Path(str(file_name).replace(".c",".cpp")))
                 continue
 
+            if "Src/main.c" in line:
+                continue
+
             if "C_SOURCES" in line:
                 c_source_flag = True
             elif not "\\" in line:
