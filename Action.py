@@ -25,6 +25,14 @@ ADD_STR = [
     "#"*500
 ]
 
+def find_file(root, name):
+    files = list(root.rglob(name))
+    if len(files) == 0:
+        return None
+    if len(files) > 1:
+        raise RuntimeError(f"Multiple {name} found: {files}")
+    return files[0]
+
 def main():
     warking_dir= Path.cwd().parent
 
@@ -32,9 +40,10 @@ def main():
     print(warking_dir)
     print("="*10)
 
-    if os.path.exists(warking_dir/"Core/Src/main.cpp"):
+    if find_file(warking_dir,"main.cpp") is not None:
         print("start side execute")
-        os.rename(warking_dir/"Core/Src/main.cpp", warking_dir/"Core/Src/main.c")
+        file_name = find_file(warking_dir,"main.cpp")
+        os.rename(file_name, file_name.replace(".cpp",".c"))
 
     if not os.path.exists(warking_dir/"Makefile"):
         print("no Makefile")
@@ -59,9 +68,10 @@ def main():
         c_source_flag = False
         for line in f:
             if "Core/Src/main.c" in line and c_source_flag:
-                if os.path.exists(warking_dir/"Core/Src/main.c"):
+                if find_file(warking_dir,"main.c") is not None:
                     print("end side execute")
-                    os.rename(warking_dir/"Core/Src/main.c", warking_dir/"Core/Src/main.cpp")
+                    file_name = find_file(warking_dir,"main.c")
+                    os.rename(file_name, file_name.replace(".c",".cpp"))
                 continue
 
             if "C_SOURCES" in line:
