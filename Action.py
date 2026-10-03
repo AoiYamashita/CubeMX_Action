@@ -81,8 +81,9 @@ def main():
                         print("end side execute")
                         file_name = find_file(warking_dir,"Src/main.c")
                         os.rename(file_name,Path(str(file_name).replace(".c",".cpp")))
-                index = file_data.rfind("\\")
-                file_data = file_data[:index] + file_data[index + 1:]
+                if not ("\\" in line):
+                    index = file_data.rfind("\\")
+                    file_data = file_data[:index] + file_data[index + 1:]
                 continue
 
             if "C_SOURCES" in line:
