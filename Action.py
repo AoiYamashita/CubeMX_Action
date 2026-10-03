@@ -71,7 +71,7 @@ def main():
                 if find_file(warking_dir,"Src/main.c") is not None:
                     print("end side execute")
                     file_name = find_file(warking_dir,"Src/main.c")
-                    os.rename(file_name,Path(str(file_name).replace(".cpp",".c")))
+                    os.rename(file_name,Path(str(file_name).replace(".c",".cpp")))
                 continue
 
             if "C_SOURCES" in line:
