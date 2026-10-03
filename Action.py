@@ -26,7 +26,7 @@ ADD_STR = [
 ]
 
 def find_file(root, name):
-    files = [i for i in list(root.rglob(name)) if not(i in "Driver")]
+    files = [i for i in list(root.rglob(name)) if not("Driver" in str(i))]
     if len(files) == 0:
         return None
     if len(files) > 1:
