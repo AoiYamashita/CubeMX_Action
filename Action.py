@@ -47,7 +47,7 @@ def main():
 
     c_file = find_file(warking_dir,"Src/main.c")
     cpp_path = str(c_file)[len(str(warking_dir)):].replace(".c",".cpp")
-    ADD_STR[0] = f"CXX_SOURCES_ = $(wildcard {str(Path(cpp_path).parent)}/*.cpp) {cpp_path}\nCXX_SOURCES = $(sort $(CXX_SOURCES_))"
+    ADD_STR[0] = f"CXX_SOURCES_ = $(wildcard {Path(cpp_path[1:].replace("main","*")).as_posix()}) {Path(str(cpp_path)[1:]).as_posix()}\nCXX_SOURCES = $(sort $(CXX_SOURCES_))"
 
     if not os.path.exists(warking_dir/"Makefile"):
         print("no Makefile")
