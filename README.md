@@ -8,3 +8,4 @@ It generates a C++-compatible Makefile and `main.cpp`.
 2. In CubeMX, configure the following User Actions:
    - **Before Code Generation**
    - **After Code Generation**
+> **Note:** Run `make clean` before switching from C to C++.
