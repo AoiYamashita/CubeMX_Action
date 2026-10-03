@@ -75,8 +75,8 @@ def main():
         add_flag = False
         c_source_flag = False
         for line in f:
-            if "Src/main.c" in line:
-                if c_source_flag and added_num > 0:
+            if "Src/main.c" in line and c_source_flag:
+                if added_num > 0:
                     if find_file(warking_dir,"Src/main.c") is not None:
                         print("end side execute")
                         file_name = find_file(warking_dir,"Src/main.c")
