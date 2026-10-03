@@ -40,10 +40,10 @@ def main():
     print(warking_dir)
     print("="*10)
 
-    if find_file(warking_dir,"main.cpp") is not None:
+    if find_file(warking_dir,"Src/main.cpp") is not None:
         print("start side execute")
-        file_name = find_file(warking_dir,"main.cpp")
-        os.rename(file_name, file_name.replace(".cpp",".c"))
+        file_name = find_file(warking_dir,"Src/main.cpp")
+        os.rename(file_name, Path(str(file_name).replace(".cpp",".c")))
 
     if not os.path.exists(warking_dir/"Makefile"):
         print("no Makefile")
@@ -67,11 +67,11 @@ def main():
         add_flag = False
         c_source_flag = False
         for line in f:
-            if "Core/Src/main.c" in line and c_source_flag:
-                if find_file(warking_dir,"main.c") is not None:
+            if "Src/main.c" in line and c_source_flag:
+                if find_file(warking_dir,"Src/main.c") is not None:
                     print("end side execute")
-                    file_name = find_file(warking_dir,"main.c")
-                    os.rename(file_name, file_name.replace(".c",".cpp"))
+                    file_name = find_file(warking_dir,"Src/main.c")
+                    os.rename(file_name,Path(str(file_name).replace(".cpp",".c")))
                 continue
 
             if "C_SOURCES" in line:
