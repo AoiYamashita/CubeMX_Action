@@ -53,11 +53,15 @@ def main():
         print("no Makefile")
         return
 
+    added_num = len(ADD_PLACE)
+
     with open(warking_dir/'Makefile', 'r', encoding='utf-8') as f:
 
         data = ""
         for line in f:
             data += line
+
+        added_num -= len([pl for pl,i in zip(ADD_PLACE,ADD_STR) if not i in data])
 
         place_iter = iter([pl for pl,i in zip(ADD_PLACE,ADD_STR) if not i in data])
         str_iter = iter([i for i in ADD_STR if not i in data])
@@ -72,7 +76,7 @@ def main():
         c_source_flag = False
         for line in f:
             if "Src/main.c" in line:
-                if c_source_flag:
+                if c_source_flag and added_num > 0:
                     if find_file(warking_dir,"Src/main.c") is not None:
                         print("end side execute")
                         file_name = find_file(warking_dir,"Src/main.c")
