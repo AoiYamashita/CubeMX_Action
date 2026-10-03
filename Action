@@ -26,7 +26,7 @@ ADD_STR = [
 ]
 
 def find_file(root, name):
-    files = list(root.rglob(name))
+    files = [i for i in list(root.rglob(name)) if not("Driver" in str(i))]
     if len(files) == 0:
         return None
     if len(files) > 1:
@@ -44,6 +44,10 @@ def main():
         print("start side execute")
         file_name = find_file(warking_dir,"Src/main.cpp")
         os.rename(file_name, Path(str(file_name).replace(".cpp",".c")))
+
+    c_file = find_file(warking_dir,"Src/main.c")
+    cpp_path = str(c_file)[len(str(warking_dir)):].replace(".c",".cpp")
+    ADD_STR[0] = f"CXX_SOURCES_ = $(wildcard {str(Path(cpp_path).parent)}*.cpp) {cpp_path}\nCXX_SOURCES = $(sort $(CXX_SOURCES_))"
 
     if not os.path.exists(warking_dir/"Makefile"):
         print("no Makefile")
@@ -71,7 +75,7 @@ def main():
                 if find_file(warking_dir,"Src/main.c") is not None:
                     print("end side execute")
                     file_name = find_file(warking_dir,"Src/main.c")
-                    os.rename(file_name,Path(str(file_name).replace(".cpp",".c")))
+                    os.rename(file_name,Path(str(file_name).replace(".c",".cpp")))
                 continue
 
             if "C_SOURCES" in line:
