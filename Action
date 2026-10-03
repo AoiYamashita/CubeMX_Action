@@ -71,14 +71,12 @@ def main():
         add_flag = False
         c_source_flag = False
         for line in f:
-            if "Src/main.c" in line and c_source_flag:
-                if find_file(warking_dir,"Src/main.c") is not None:
-                    print("end side execute")
-                    file_name = find_file(warking_dir,"Src/main.c")
-                    os.rename(file_name,Path(str(file_name).replace(".c",".cpp")))
-                continue
-
             if "Src/main.c" in line:
+                if c_source_flag:
+                    if find_file(warking_dir,"Src/main.c") is not None:
+                        print("end side execute")
+                        file_name = find_file(warking_dir,"Src/main.c")
+                        os.rename(file_name,Path(str(file_name).replace(".c",".cpp")))
                 index = file_data.rfind("\\")
                 file_data = file_data[:index] + file_data[index + 1:]
                 continue
