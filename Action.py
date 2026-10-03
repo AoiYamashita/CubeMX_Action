@@ -79,7 +79,7 @@ def main():
                 continue
 
             if "Src/main.c" in line:
-                index = file_data.rfind("a")
+                index = file_data.rfind("\\")
                 file_data = file_data[:index] + file_data[index + 1:]
                 continue
 
