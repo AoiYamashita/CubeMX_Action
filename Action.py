@@ -79,6 +79,8 @@ def main():
                 continue
 
             if "Src/main.c" in line:
+                index = file_data.rfind("a")
+                file_data = file_data[:index] + file_data[index + 1:]
                 continue
 
             if "C_SOURCES" in line:
