@@ -44,6 +44,7 @@ def main():
         print("start side execute")
         file_name = find_file(warking_dir,"Src/main.cpp")
         os.rename(file_name, Path(str(file_name).replace(".cpp",".c")))
+        return
 
     c_file = find_file(warking_dir,"Src/main.c")
     cpp_path = str(c_file)[len(str(warking_dir)):].replace(".c",".cpp")
